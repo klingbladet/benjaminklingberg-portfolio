@@ -1,0 +1,52 @@
+{
+  "work": [
+    {
+      "job": "Ground Handler",
+      "company": "SAS Ground Handler",
+      "location": "Arlanda",
+      "time": "Part time",
+      "duration": "June 2022 - present",
+      "description": "Handled aircraft arrivals and managed all baggage loading and unloading for both incoming and outgoing flights. I also worked as a start-up leader, responsible for communication between the pilot and the pushback operator during departures. The role required strong teamwork, quick problem-solving, and the ability to collaborate effectively in a fast-paced environment."
+    },
+    {
+      "job": "Meeting Cordinator",
+      "company": "Gimlit",
+      "location": "Uppsala",
+      "time": "Part time",
+      "duration": "Okt 2023 - Sep 2024",
+      "description": "Part-time appointment setter for a digital marketing agency specializing in website development and SEO. I handled initial outreach, identified client needs, and booked qualified meetings, gaining strong communication skills and a solid understanding of how web and SEO services are sold."
+    },
+    {
+      "job": "Sales / Marketing",
+      "company": "Mondify",
+      "location": "Uppsala",
+      "time": "Full time",
+      "duration": "Aug - Jan 2022",
+      "description": "In 2022, I was offered a position as a salesperson at a marketing agency. The job involved first booking meetings with other companies and then attending the sales meetings myself to pitch our services, which in this case were digital marketing solutions. I gained a lot of knowledge in areas such as digital marketing, but most importantly in sales and building trust. The role required strong social skills and the ability to adapt, as I met with different companies in person on a regular basis."
+    }
+  ],
+  
+  "education": [
+    {
+      "degree": "Associate's degree, Fullstack Javascript",
+      "School": "Chas Academy",
+      "location": "Stockholm",
+      "time": "Full time",
+      "duration": "Sep 2025 - June 2027"
+    },
+    {
+      "degree": "UX and Accesability for Developers",
+      "School": "Medieinstitutet",
+      "location": "Stockholm",
+      "time": "Full time",
+      "duration": "Mars 2025 - June 2025"
+    },
+    {
+      "degree": "UX, Digital Accesability and AI",
+      "School": "Malmö Yrkeshögskola",
+      "location": "Stockholm",
+      "time": "Full time",
+      "duration": "Sep 2024 - Jan 2025"
+    }
+  ]
+}

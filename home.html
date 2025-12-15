@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio sida</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/base.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Prop+Double+Ink:wght@100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Hedvig+Letters+Sans&family=Playwrite+MX+Guides&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      
+    <header>
+      <nav id="home" class="nav-bar">
+        
+        <div class="profile-hamburger">
+          <a class="profile-logo" href="#home"><img alt="profile-logo" class="profile-logo" src="img/nav/BK-LOGO-GRADIENT-TWO.png"></a>
+          <img class="hamburger-icon" alt ="hamburger-icon" src="img/other-icons/hamburger-menu.svg">
+          
+        </div>
+        <ul class="nav-options">
+          <li class="home"><a href="#home">Home</a></li>
+          <li class="about"><a href="#about">About</a></li>
+          <li class="project"><a href="#projects">Projects</a></li>
+          <li class="contact"><a href="#contact">Contact</a></li>
+          <li class="contact"><a href="#dark-mode">Dark Mode</a></li>
+          
+        </ul>
+
+        <ul class="social-media-icons">
+          <li><a class="social-media-icon" href="https://x.com/" target="_blank"><img alt="twitter-logo" class="social-media-icon" src="img/nav/twitter-logo.svg"></a></li>
+          <li><a class="social-media-icon" href="https://www.linkedin.com/in/benjamin-klingberg-6152151ba/" target="_blank"><img alt="linkedin-logo" class="social-media-icon" src="img/nav/linkedin-logo.svg"></a></li>
+          <li><a class="social-media-icon" href="https://github.com/klingbladet" target="_blank"><img alt="github-logo" class="social-media-icon" src="img/nav/github-logo.svg"></a></li>
+        </ul>
+      </nav>
+
+      <section class="home-page-one">
+        <div class="home-page">
+          <h1 class="heading"><span>Benjamin Klingberg</span><br>Web Developer</h1>
+          <img class="profile-picture" alt="profile-picture" src="img/profile-picture.jpg">
+        </div>
+      </section>
+    </header>
+
+    <section class="projects-section" id="projects">
+        <h2 class="projects-header">My Work</h2>
+        <div class="projects-grid" id="repos">
+      </div>
+    </section>
+      <div class="show-projects"></div>
+      <div class="close-open-btn">
+        <button id="close-projects">↑</button>
+        <button id="open-projects" class="show-more">More Projects ↓</button>
+      </div>
+
+    <section class="about-me" id="about">
+        <h2 class="tech-stack-header">Technologies I Know</h2>
+        <div class="tech-stack-logos">
+          <img class="tech-stack-logo" src="img/tech-stack/html-logo.svg" alt="html logo">
+          <img class="tech-stack-logo" src="img/tech-stack/css-logo.svg" alt="css logo">
+          <img class="tech-stack-logo" src="img/tech-stack/js-logo.svg" alt="javascript logo">
+          <img class="tech-stack-logo" src="img/tech-stack/react-logo.svg" alt="react logo">
+          <img class="tech-stack-logo" src="img/tech-stack/logo-5.svg" alt="logo five">
+          <img class="tech-stack-logo" src="img/tech-stack/bootstrap-logo.svg" alt="bootstrap logo">
+          <img class="tech-stack-logo" src="img/tech-stack/logo-7.svg" alt="tailwind logo">
+          <img class="tech-stack-logo" src="img/tech-stack/logo-8.svg" alt="sass logo">
+          <img class="tech-stack-logo" src="img/tech-stack/logo-9.svg" alt="git logo">
+          <img class="tech-stack-logo-10" src="img/tech-stack/logo-10.svg" alt="greensock logo">
+          <img class="tech-stack-logo" src="img/tech-stack/vs-code-logo.svg" alt="vscode logo">
+          <img class="tech-stack-logo-12" src="img/tech-stack/git-hub-logo.svg" alt="github logo" >
+        </div>
+        <h2 class="about-me-header">About Me</h2>
+        <p class="about-me-parapraph">
+          My name is Benjamin — a creative and solution-oriented full-stack developer with a strong focus on frontend and JavaScript. My background in UX and design means I don’t just build functional solutions; I also put a lot of emphasis on how things feel and look. I enjoy taking projects from idea to finished product — from understanding the user, to designing, developing, and polishing the details. Right now, I'm focused on strengthening my full-stack skills ahead of my upcoming studies, while continuing to sharpen my frontend abilities through personal projects. <br><br>In short: I’m a curious and dedicated developer who aims to create smart, beautiful, and user-friendly experiences — both on the client side and under the hood.
+        </p>
+        <h2>Work Experience</h2>
+        <div id="work-experience-container">
+          <div id="description-container" class="description-container"></div>
+        </div>
+        <h2>Education</h2>
+        <div id="education-container">
+        </div>
+    </section>
+
+    <section class="contact-page" id="contact">
+      <h2 class="contact-paragraph-bold">Contact me</h2>
+      <a class="mail" href="mailto:benne.klingberg@gmail.com"
+      ><span id="mail-underline" class="linear-gradient">benne.klingberg@gmail.com</span></a>
+      <p class="or">or</p>
+      <a class="number" href="tel:+46729758457"><span id="number-underline" class="linear-gradient">072-975 84 57</span></a>
+    </section>
+
+    <a class="button-go-up" href="#home">Go up ↑</a>
+    
+    <footer>
+    <p class="footer-paragraph">
+          Designed and built by <span class="linear-gradient">Banjoman</span> with
+          <span class="linear-gradient">Love</span> &
+          <span style="color: #e70faa">Coffee</span>
+    </p>
+    <div id="dark-mode" class="dm-switch-container">
+          <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider">
+              <span class="icon sun">☀️</span>
+              <span class="icon moon">🌙</span>
+            </span>
+          </label>
+    </div>
+  </footer>
+  </div>
+  </body>
+</html>
