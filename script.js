@@ -330,7 +330,7 @@ async function loadGitHubRepos() {
       const remainingHTML = remainingRepos.map(repo => `
         <article class="project-box">
           <div class="project-information">
-            <img class="project-image" src="img/projects/projects-image-1.jpg" alt="${repo.name}">
+            <img class="project-image" src="img/projects/${repo.name}.png" alt="${repo.name}">
             <div class="project-text">
               <h3>${repo.name}</h3>
               <p class="project-paragraph">${repo.description || "No description provided."}</p>
