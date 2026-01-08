@@ -701,6 +701,11 @@ h3 {
     height: 20px;
   }
 
+  .social-media-icon:hover {
+    margin-left: 0px;
+    height: 20px;
+  }
+
   .social-media-icons {
     display: flex;
     margin-bottom: 0px;
@@ -748,7 +753,7 @@ h3 {
   }
 
   .tech-stack-logos {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .tech-stack-logo:hover,
@@ -785,6 +790,5 @@ h3 {
   .profile-logo {
     height: 120px;
     width: 140px;
-    
   }
 }
