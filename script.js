@@ -289,13 +289,13 @@ async function loadGitHubRepos() {
       .filter(repo => !repo.fork)
       .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
-    // SPLITTA REPOS TILL 2 OCH KVARSTÅENDE (FÖR GRID LAYOUT)
+    // SPLITTA REPOS TILL 3 OCH KVARSTÅENDE (FÖR 3-KOLUMN GRID LAYOUT)
 
-    const firstTwoRepos = publicRepos.slice(0, 2);
-    const remainingRepos = publicRepos.slice(2);
+    const firstThreeRepos = publicRepos.slice(0, 3);
+    const remainingRepos = publicRepos.slice(3);
 
-    // SKAPA HTML FÖR FÖRSTA 2 REPOS (ALLTID SYNLIGA I PROJECTS-GRID)
-    const firstTwoHTML = firstTwoRepos.map(repo => `
+    // SKAPA HTML FÖR FÖRSTA 3 REPOS (ALLTID SYNLIGA I PROJECTS-GRID)
+    const firstThreeHTML = firstThreeRepos.map(repo => `
       <article class="project-box">
         <div class="project-information">
           <img class="project-image" src="img/projects/${repo.name}.png" alt="${repo.name}">
@@ -320,8 +320,8 @@ async function loadGitHubRepos() {
       </article>
     `).join("");
 
-    // LÄGG TILL FÖRSTA 2 REPOS TILL MAIN-CONTAINER
-    repoContainer.innerHTML += firstTwoHTML;
+    // LÄGG TILL FÖRSTA 3 REPOS TILL MAIN-CONTAINER
+    repoContainer.innerHTML += firstThreeHTML;
 
     // IFALL DET ÄR FLER REPOS, LÄGG TILL DOM FÖR SHOW-PROJECTS CONTAINER
     if (remainingRepos.length > 0) {
