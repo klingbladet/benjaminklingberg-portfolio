@@ -77,8 +77,8 @@ function createWorkEntry(work, index) {
   toggleBtn.className = 'toggle-description-btn';
   toggleBtn.textContent = '↓';
   toggleBtn.dataset.index = index;
-  
-  toggleBtn.addEventListener('click', function() {
+
+  toggleBtn.addEventListener('click', function () {
     const isShowing = descriptionContainer.classList.contains('show');
     descriptionContainer.classList.toggle('show');
     this.textContent = isShowing ? '↓' : '↑';
@@ -91,7 +91,7 @@ function createWorkEntry(work, index) {
 
 function createEducationEntry(education) {
   const columnOne = document.createElement('div');
-  columnOne.className = 'work-experience-column-one'; 
+  columnOne.className = 'work-experience-column-one';
 
   const rowOne = document.createElement('div');
   rowOne.className = 'work-experience-row';
@@ -125,7 +125,7 @@ function createEducationEntry(education) {
   workDetails.appendChild(locationSpan);
 
   const duration = document.createElement('p');
-  duration.className = 'date-pg'; 
+  duration.className = 'date-pg';
   duration.textContent = education.duration;
 
   rowTwo.appendChild(workDetails);
@@ -141,8 +141,8 @@ async function renderCV() {
   const containers = document.querySelectorAll('#work-experience-container, #education-container');
 
   if (containers.length === 0) {
-      console.error("No CV containers found. Ensure IDs #work-experience-container and #education-container exist.");
-      return;
+    console.error("No CV containers found. Ensure IDs #work-experience-container and #education-container exist.");
+    return;
   }
 
   containers.forEach(container => {
@@ -158,40 +158,40 @@ async function renderCV() {
     const data = await response.json();
 
     const workContainer = document.getElementById('work-experience-container');
-    const workData = data.work; 
+    const workData = data.work;
 
     if (workContainer) {
-        workContainer.innerHTML = '';
-        if (workData && workData.length > 0) {
-            workData.forEach((work, index) => {
-                const entry = createWorkEntry(work, index);
-                workContainer.appendChild(entry);
-            });
-        } else {
-            workContainer.innerHTML = '<p style="color: gray;">No work experience entries found.</p>';
-        }
+      workContainer.innerHTML = '';
+      if (workData && workData.length > 0) {
+        workData.forEach((work, index) => {
+          const entry = createWorkEntry(work, index);
+          workContainer.appendChild(entry);
+        });
+      } else {
+        workContainer.innerHTML = '<p style="color: gray;">No work experience entries found.</p>';
+      }
     }
-    
+
     const educationContainer = document.getElementById('education-container');
-    const educationData = data.education; 
-    
+    const educationData = data.education;
+
     if (educationContainer) {
-        educationContainer.innerHTML = ''; 
-        if (educationData && educationData.length > 0) {
-            educationData.forEach(edu => {
-                const entry = createEducationEntry(edu);
-                educationContainer.appendChild(entry);
-            });
-        } else {
-            educationContainer.innerHTML = '<p style="color: gray;">No education entries found.</p>';
-        }
+      educationContainer.innerHTML = '';
+      if (educationData && educationData.length > 0) {
+        educationData.forEach(edu => {
+          const entry = createEducationEntry(edu);
+          educationContainer.appendChild(entry);
+        });
+      } else {
+        educationContainer.innerHTML = '<p style="color: gray;">No education entries found.</p>';
+      }
     }
 
   } catch (error) {
     console.error("Error", error);
     containers.forEach(container => {
-            container.innerHTML = `<p style="color: red;">Error loading data: ${error.message}. Check console.</p>`;
-      });
+      container.innerHTML = `<p style="color: red;">Error loading data: ${error.message}. Check console.</p>`;
+    });
   }
 }
 
@@ -199,59 +199,59 @@ window.addEventListener('load', renderCV);
 
 // VÄNTA TILLS DOMEN HAR LADDAT KLART
 
-document.addEventListener('DOMContentLoaded', function() {
-  
-// THEME TOGGLE FUNKTIONALITET
+document.addEventListener('DOMContentLoaded', function () {
 
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
+  // THEME TOGGLE FUNKTIONALITET
 
-// LADDA SPARAT TEMA
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
 
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme === "dark") {
-  body.classList.add("dark-mode");
-  if (themeToggle) themeToggle.checked = true;
-}
+  // LADDA SPARAT TEMA
 
-// TOGGLE THEME
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark-mode");
+    if (themeToggle) themeToggle.checked = true;
+  }
 
-if (themeToggle) {
-  themeToggle.addEventListener('change', function() {
-    if (this.checked) {
-      body.classList.add('dark-mode');
-      localStorage.setItem("theme", "dark");
-    } else {
-      body.classList.remove('dark-mode');
-      localStorage.setItem("theme", "light");
-    }
-  });
-}
+  // TOGGLE THEME
 
-// HAMBURGAR-MENY FUNKTIONALITET
-
-const hamburgerImg = document.querySelector('.hamburger-icon');
-const navOptions = document.querySelector('.nav-options');
-const socialIcons = document.querySelector('.social-media-icons');
-
-if (hamburgerImg && navOptions && socialIcons) {
-  hamburgerImg.addEventListener('click', function(e) {
-    e.preventDefault();
-    navOptions.classList.toggle('active');
-    socialIcons.classList.toggle('active');
-    hamburgerImg.classList.toggle('active');
-  });
-
-  // Close menu when clicking on a nav link
-  const navLinks = document.querySelectorAll('.nav-options a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      navOptions.classList.remove('active');
-      socialIcons.classList.remove('active');
-      hamburgerImg.classList.remove('active');
+  if (themeToggle) {
+    themeToggle.addEventListener('change', function () {
+      if (this.checked) {
+        body.classList.add('dark-mode');
+        localStorage.setItem("theme", "dark");
+      } else {
+        body.classList.remove('dark-mode');
+        localStorage.setItem("theme", "light");
+      }
     });
-  });
-}
+  }
+
+  // HAMBURGAR-MENY FUNKTIONALITET
+
+  const hamburgerImg = document.querySelector('.hamburger-icon');
+  const navOptions = document.querySelector('.nav-options');
+  const socialIcons = document.querySelector('.social-media-icons');
+
+  if (hamburgerImg && navOptions && socialIcons) {
+    hamburgerImg.addEventListener('click', function (e) {
+      e.preventDefault();
+      navOptions.classList.toggle('active');
+      socialIcons.classList.toggle('active');
+      hamburgerImg.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a nav link
+    const navLinks = document.querySelectorAll('.nav-options a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function () {
+        navOptions.classList.remove('active');
+        socialIcons.classList.remove('active');
+        hamburgerImg.classList.remove('active');
+      });
+    });
+  }
 });
 
 // SKROLL-EFFEKT
@@ -326,7 +326,7 @@ async function loadGitHubRepos() {
     // IFALL DET ÄR FLER REPOS, LÄGG TILL DOM FÖR SHOW-PROJECTS CONTAINER
     if (remainingRepos.length > 0) {
       const showProjectsContainer = document.querySelector('.show-projects');
-      
+
       const remainingHTML = remainingRepos.map(repo => `
         <article class="project-box">
           <div class="project-information">
@@ -418,7 +418,7 @@ function setupProjectToggle() {
 document.addEventListener("DOMContentLoaded", () => {
   observeElements();
   loadGitHubRepos();
-  
+
   // DEBUG: CONSOLE.LOG ALLA ELEMENT PÅ PAGE LOAD
   console.log("=== PAGE LOADED - DEBUGGING ===");
   console.log("repos container:", document.getElementById("repos"));
