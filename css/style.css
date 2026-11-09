@@ -262,12 +262,48 @@ h2 {
   margin-bottom: 30px;
 }
 
-.about-me-parapraph {
-  font-size: 1rem;
+.about-me-container {
   width: 100%;
   max-width: 800px;
-  margin-bottom: 100px;
+}
+
+.about-me-parapraph,
+.about-me-paragraph {
+  font-size: 1rem;
+  line-height: 1.7;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
   color: var(--text-secondary);
+}
+
+.about-me-parapraph strong,
+.about-me-paragraph strong {
+  color: var(--text-primary);
+}
+
+.about-me-closing {
+  margin-top: 10px;
+  margin-bottom: 80px;
+}
+
+.achievements-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  max-width: 800px;
+  margin: 14px 0 24px 0;
+  color: var(--text-secondary);
+}
+
+.achievements-list li {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.achievements-list strong {
+  color: var(--text-primary);
 }
 
 .work-experience-column-one,
