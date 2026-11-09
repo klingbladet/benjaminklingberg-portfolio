@@ -271,6 +271,101 @@ function observeElements() {
   hiddenElements.forEach((el) => observer.observe(el));
 }
 
+// TECH STACK MAPPING & HELPER
+// 1. Manuell mappning för exakta tech stacks (högsta prioritet)
+const projectTechStacks = {
+  "benjaminklingberg-portfolio": "Vanilla JavaScript, HTML5, CSS3",
+  "portfolio-website-only-css-html": "HTML5, CSS3",
+  "simple-to-do-list": "Vanilla JavaScript, CSS3",
+  "quizScript-project": "Vanilla JavaScript, CSS3, Firebase",
+  "FLAPPY-ALLSTARS": "Vanilla JavaScript, HTML5",
+  "partisimulator": "Next.js, TypeScript, Tailwind CSS",
+  "saab-sentinel": "Vanilla JavaScript, HTML5",
+  "fullstack-todo-app": "Typescript, Supabase, CSS3",
+  "jobchaser-project": "React, TypeScript, CSS3",
+  "Chas-n-Chill": "TypeScript, Tailwind CSS, Clerk",
+  "adulting": "Next.js, TypeScript, Tailwind CSS, Postgres, Express"
+};
+
+// Formatering för vanliga GitHub-topics/taggar
+const topicNameMap = {
+  "react": "React",
+  "reactjs": "React",
+  "nextjs": "Next.js",
+  "next-js": "Next.js",
+  "typescript": "TypeScript",
+  "javascript": "JavaScript",
+  "vanilla-javascript": "Vanilla JavaScript",
+  "vanilla-js": "Vanilla JavaScript",
+  "tailwind": "Tailwind CSS",
+  "tailwindcss": "Tailwind CSS",
+  "html": "HTML5",
+  "html5": "HTML5",
+  "css": "CSS3",
+  "css3": "CSS3",
+  "nodejs": "Node.js",
+  "node": "Node.js",
+  "express": "Express",
+  "supabase": "Supabase",
+  "mongodb": "MongoDB",
+  "vite": "Vite"
+};
+
+function formatTopic(topic) {
+  const lower = topic.toLowerCase();
+  if (topicNameMap[lower]) {
+    return topicNameMap[lower];
+  }
+  // För övriga taggar: ersätt bindestreck och ge stor begynnelsebokstav
+  return topic
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, char => char.toUpperCase());
+}
+
+function getTechStack(repo) {
+  // 1. Prioritet: manuell mappning i projectTechStacks
+  if (projectTechStacks[repo.name]) {
+    return projectTechStacks[repo.name];
+  }
+
+  // 2. Prioritet: GitHub-topics (taggar från GitHub-repot)
+  if (repo.topics && repo.topics.length > 0) {
+    return repo.topics.map(formatTopic).join(", ");
+  }
+
+  // 3. Fallback: GitHubs automatiskt detekterade språk
+  return repo.language || "N/A";
+}
+
+function createProjectCardHTML(repo) {
+  const techStack = getTechStack(repo);
+
+  return `
+    <article class="project-box">
+      <div class="project-information">
+        <img class="project-image" src="img/projects/${repo.name}.png" alt="${repo.name}">
+        <div class="project-text">
+          <h3>${repo.name}</h3>
+          <p class="project-paragraph">${repo.description || "No description provided."}</p>
+          <p class="project-tech-stack-paragraph">
+            Tech stack: <span style="font-size: 14px;">${techStack}</span>
+          </p>
+        </div>
+        <div class="projects-column">
+          <div>
+            <img src="img/projects/link-icon.svg" alt="link icon">
+            <a id="project-link" href="${repo.homepage || repo.html_url}" target="_blank">Live Preview</a>
+          </div>
+          <div>
+            <img src="img/projects/github-icon.svg" alt="github icon">
+            <a id="project-link" href="${repo.html_url}" target="_blank">View code</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
 // FETCH GITHUB-REPOS
 
 async function loadGitHubRepos() {
@@ -279,7 +374,11 @@ async function loadGitHubRepos() {
   repoContainer.innerHTML = '<p id="loading-message">Loading GitHub-projects...</p>'
 
   try {
-    const response = await fetch("https://api.github.com/users/klingbladet/repos");
+    const response = await fetch("https://api.github.com/users/klingbladet/repos", {
+      headers: {
+        Accept: "application/vnd.github+json"
+      }
+    });
     if (!response.ok) throw new Error("GitHub API request failed");
     const repos = await response.json();
 
@@ -295,30 +394,7 @@ async function loadGitHubRepos() {
     const remainingRepos = publicRepos.slice(3);
 
     // SKAPA HTML FÖR FÖRSTA 3 REPOS (ALLTID SYNLIGA I PROJECTS-GRID)
-    const firstThreeHTML = firstThreeRepos.map(repo => `
-      <article class="project-box">
-        <div class="project-information">
-          <img class="project-image" src="img/projects/${repo.name}.png" alt="${repo.name}">
-          <div class="project-text">
-            <h3>${repo.name}</h3>
-            <p class="project-paragraph">${repo.description || "No description provided."}</p>
-            <p class="project-tech-stack-paragraph">
-              Tech stack: <span style="font-size: 14px;">${repo.language || "N/A"}</span>
-            </p>
-          </div>
-          <div class="projects-column">
-            <div>
-              <img src="img/projects/link-icon.svg" alt="link icon">
-              <a id="project-link"href="${repo.homepage || repo.html_url}" target="_blank">Live Preview</a>
-            </div>
-            <div>
-              <img src="img/projects/github-icon.svg" alt="github icon">
-              <a id="project-link"href="${repo.html_url}" target="_blank">View code</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    `).join("");
+    const firstThreeHTML = firstThreeRepos.map(createProjectCardHTML).join("");
 
     // LÄGG TILL FÖRSTA 3 REPOS TILL MAIN-CONTAINER
     repoContainer.innerHTML += firstThreeHTML;
@@ -327,30 +403,7 @@ async function loadGitHubRepos() {
     if (remainingRepos.length > 0) {
       const showProjectsContainer = document.querySelector('.show-projects');
 
-      const remainingHTML = remainingRepos.map(repo => `
-        <article class="project-box">
-          <div class="project-information">
-            <img class="project-image" src="img/projects/${repo.name}.png" alt="${repo.name}">
-            <div class="project-text">
-              <h3>${repo.name}</h3>
-              <p class="project-paragraph">${repo.description || "No description provided."}</p>
-              <p class="project-tech-stack-paragraph">
-                Tech stack: <span style="font-size: 14px;">${repo.language || "N/A"}</span>
-              </p>
-            </div>
-            <div class="projects-column">
-              <div>
-                <img src="img/projects/link-icon.svg" alt="link icon">
-                <a id="project-link"href="${repo.homepage || repo.html_url}" target="_blank">Live Preview</a>
-              </div>
-              <div>
-                <img src="img/projects/github-icon.svg" alt="github icon">
-                <a id="project-link" href="${repo.html_url}" target="_blank">View code</a>
-              </div>
-            </div>
-          </div>
-        </article>
-      `).join("");
+      const remainingHTML = remainingRepos.map(createProjectCardHTML).join("");
 
       showProjectsContainer.innerHTML = remainingHTML;
 
